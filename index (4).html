@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POO</title>
+</head>
+<body>
+  <h1>Programación orientada a objetos</h1>
+  <script>
+    function Circulo (_radio) {
+      this.radio = _radio;
+
+      this.getArea = function () {
+        const area = Math.PI * this.radio * this.radio;
+        return area;
+      }
+
+      this.getPerimetro = function () {
+        return 2 * Math.PI * this.radio;
+      }
+    }
+
+    const circulito = new Circulo(3);
+    const circulon = new Circulo(8);
+    const circulin = new Circulo(5);
+    const circulote = new Circulo(15);
+
+    const muchos_circulos = [circulito, circulon, circulin, circulote];
+
+    // Primero creamos las  clases
+    function Consultorio (_nombre) {
+      this.nombre = _nombre;
+      this.pacientes = [];
+
+      this.addPaciente = function(nuevopaciente){
+        this.pacientes.push(nuevopaciente);
+      } 
+      this.showPacientes = function(){
+        for (paciente of this.pacientes) {
+          paciente.show();
+        }
+      }
+      
+      this.filterPacientes = function (nombre) {
+        for (paciente of this.pacientes) {
+          if (paciente.nombre.toUpperCase() == nombre.toUpperCase()) {
+            paciente.show();
+          }
+        }
+      }
+      /* Versión resumida usando métodos de arrays
+      this.filterPacientes = nombre => 
+        this.pacientes.filter(x => x.nombre == this.nombre).map(x => x.show())
+      */
+    }
+    function Paciente (_nombre, _rut, _diagnostico) {
+      this.nombre = _nombre;
+      this.rut = _rut;
+      this.diagnostico = _diagnostico;
+
+      this.show = function() {
+        console.log(`Paciente se llama ${this.nombre} y su diagnóstico es ${this.diagnostico}`)
+      }
+    }
+    // Después creamos las instancias
+    const sencemed = new Consultorio('senceMed');
+    const paciente1 = new Paciente('Julio Palma', '1234123-3', 'covid');
+    const paciente2 = new Paciente('Gigi', '2234523-3', 'stress crónico');
+    const paciente3 = new Paciente('Ingrid', '3234123-9', 'jaqueca');
+    const paciente4 = new Paciente('Matías', '53234123-9', 'Rinitis');
+
+    // LE agregamos paciente1, paciente2 y paciente3 a sencemed
+    sencemed.addPaciente(paciente1);
+    sencemed.addPaciente(paciente2);
+    sencemed.addPaciente(paciente3);
+    sencemed.addPaciente(paciente4);
+</script>
+</body>
+</html>
